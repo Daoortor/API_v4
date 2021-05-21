@@ -20,10 +20,14 @@ class User(db.Model):
 
     @staticmethod
     def find_by_username(value):
-        db.create_all()
-        return db.session.query(User).filter_by(username=value).first()
+        result = db.session.query(User).filter_by(username=value).all()
+        if result:
+            return result[0]
+        return None
 
     @staticmethod
     def find_by_id(value):
-        db.create_all()
-        return db.session.query(User).filter_by(id=value).first()
+        result = db.session.query(User).filter_by(id=value).all()
+        if result:
+            return result[0]
+        return None
